@@ -1,3 +1,11 @@
+:root{
+  --mainSky: #D9ECF2;
+  --mainHotPeach:#ff414d;
+  --mainHotBlue: #1aa687;
+  --mainDark: #002d40;
+  --mainPeach:#F97173;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +19,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App .nav{
+  background-color:var(--mainDark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Inria Serif', sans-serif;
+}
+
+/* .App .Dashboard header{
+  background: url(https://images.unsplash.com/photo-1476275466078-4007374efbbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1014&q=80);
+  background-size: cover;
+  background-position: center;
+  min-height: 1000px;
+} */
+
+@media screen and (max-width: 670px){
+  .App .nav .material-icons{
+    display: none;
+  } 
+  .App header{
+    min-height: 500px;
+  }
+}
+
