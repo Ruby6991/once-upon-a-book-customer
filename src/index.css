@@ -20,6 +20,7 @@ code {
     monospace;
 }
 
+/*Nav bar styles*/
 .App .nav{
   background-color:var(--mainDark);
   display: flex;
@@ -28,15 +29,21 @@ code {
   align-items: center;
   font-family: 'Inria Serif', sans-serif;
 }
+@media screen and (max-width: 670px){
+  .App .nav .material-icons{
+    display: none;
+  } 
+}
 
+/*Footer styles*/
 .App .page-footer{
   background-color: var(--mainDark);
 }
 
+/*Search bar styles*/
 #search{
   border-bottom: none;
 }
-
 #searchBar{
   margin: 0vw 25vw;
   box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11),
@@ -46,22 +53,17 @@ code {
   border-left: 0 solid #ef5350;
   transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
 }
-
 #searchBar:hover {
   padding-left: 0.5rem;
   border-left: 0.5rem solid #ef5350;
 }
 
+/*Dashboard Tabs styles*/
 #bookCategories .tab :hover{
   background-color: #002d40;
 }
 
-@media screen and (max-width: 670px){
-  .App .nav .material-icons{
-    display: none;
-  } 
-}
-
+/*Dashboard Slider styles*/
 @keyframes slidy {
   0% { left: 0%; }
   20% { left: 0%; }
@@ -72,20 +74,114 @@ code {
   75% { left: -300%; }
   95% { left: -300%; }
   100% { left: -400%; }
-  }
-  
-  .App .welcome { 
-    margin: 0; 
-  } 
-  div#slider { overflow: hidden; }
-  div#slider figure img { width: 20%; float: left; }
-  div#slider figure { 
-    position: relative;
-    width: 500%;
-    margin: 0;
-    left: 0;
-    text-align: left;
-    font-size: 0;
-    animation: 30s slidy infinite; 
-  }
+}
+.App .welcome { 
+  margin: 0; 
+} 
+div#slider { overflow: hidden; }
+div#slider figure img { width: 20%; float: left; }
+div#slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 30s slidy infinite; 
+}
+
+/*BookList styles*/
+.App .Dashboard section {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.App .Dashboard .list {
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 1rem 0 2rem 0;
+}
+.App .Dashboard .list > div {
+  width: 200px;
+  float: left;
+  height: 300px;
+  background: #fff;
+  margin: 1%;
+  position: relative;
+}
+.App .Dashboard .list .product img{
+  height: 100%;
+  width: 100%;
+}
+.App .Dashboard .list .product > div {
+  text-align: center;
+  position: absolute;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  bottom: 0;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+}
+.App .Dashboard .list .product:hover > div {
+  position: absolute;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.App .Dashboard .list .product > img {
+  margin: 0 auto;
+  display: block;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.App .Dashboard .list .product:hover > img {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+.App .Dashboard .list .product > div > h2 {
+  border-bottom: 1px solid #818181;
+  padding: 0 0 1rem;
+  font-size: medium;
+  font-weight: bold;
+}
+.App .Dashboard .list .product .descr {
+  font-size: 0.8rem;
+  padding: 2rem;
+  line-height: 1.2rem;
+}
+.App .Dashboard .list .product > div > a > p {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  line-height: 2rem;
+  background: #000;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin: 0 auto !important;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.App .Dashboard .list .product > div > a > p:hover {
+  background: linear-gradient(
+    to right,
+    #ff6a00,
+    #ee0979
+  );
+  bottom: 5px;
+  letter-spacing: 4px;
+}
+
+
+
+
+
 
