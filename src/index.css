@@ -180,6 +180,174 @@ div#slider figure {
   letter-spacing: 4px;
 }
 
+/*Book Details Page Styles*/
+.App .book-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5vh 2vw;
+}
+.App .book-details .grid{
+  display: flex;
+  flex-direction: row;
+  padding: 5vh 0;
+  justify-content: flex-start;
+}
+.App .book-details .reviews{
+  display: flex;
+  flex-direction: column;
+  padding: 5vh 0;
+  justify-content: flex-start;
+}
+.App .book-details .grid .column-xs-12 {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5vh 1.5vw;
+  justify-content: space-around;
+  align-items: initial;
+}
+.App .book-details .grid .column-xs-12 .product-image{
+  width: 27rem;
+  height: 36rem;
+}
+.App .book-details .grid .column-xs-12 .product-image img{
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+}
+.App .book-details h1{
+  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 42px;
+  letter-spacing: 3px;
+  font-weight: 100;
+  color: #474747;
+  margin: 0;
+}
+.App .book-details h2{
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  display: block;
+  background-color: white;
+  margin: 0;
+}
+.App .book-details .author{
+  font-size: 13px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--mainHotPeach);
+  letter-spacing: 0.2em;
+}
+.App .book-details p{
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  display: block;
+  background-color: white;
+  margin: 0;
+}
+@media screen and (max-width: 670px){
+  .App .book-details h1{
+    font-size: 26px;
+    line-height: 32px;
+    letter-spacing: 1.5px;
+  }
+  .App .book-details h2{
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
+  .App .book-details p{
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0px;
+  }
+  .App .book-details .grid{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .App .book-details .grid .column-xs-12 .description{
+    padding: 3vh 0;
+  }
+}
+.App .book-details .grid .column-xs-12 .add-to-cart{
+  line-height: 42px;
+  letter-spacing: 3px;
+  display: inline-block;
+  height: 50px;
+  width: 176px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 60px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: var(--mainDark);
+  cursor: pointer;
+  outline: none;
+}
+.App .book-details .grid .column-xs-12 .add-to-cart:hover{
+  background-color: var(--mainHotPeach)
+}
+
+/*Book Reviews Star Rating Styles*/
+.App .book-details .grid .column-xs-12 .star-rating fieldset, label { margin: 0; padding: 0; }
+.App .book-details .grid .column-xs-12 .star-rating body{ margin: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.App .book-details .grid .column-xs-12 .star-rating .rating { 
+  border: none;
+  float: left;
+}
+
+.App .book-details .grid .column-xs-12 .star-rating .rating > input { display: none; } 
+.App .book-details .grid .column-xs-12 .star-rating .rating > label:before { 
+  margin: 0px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.App .book-details .grid .column-xs-12 .star-rating .rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.App .book-details .grid .column-xs-12 .star-rating .rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+.App .book-details .grid .column-xs-12 .star-rating .rating > input:checked ~ label, /* show gold star when clicked */
+.App .book-details .grid .column-xs-12 .star-rating .rating:not(:checked) > label:hover, /* hover current star */
+.App .book-details .grid .column-xs-12 .star-rating .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.App .book-details .grid .column-xs-12 .star-rating .rating > input:checked + label:hover, /* hover current star when changing rating */
+.App .book-details .grid .column-xs-12 .star-rating .rating > input:checked ~ label:hover,
+.App .book-details .grid .column-xs-12 .star-rating .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.App .book-details .grid .column-xs-12 .star-rating .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+
+
+
+  
+
+
+
+
+
+ 
+
+   
+
+
 
 
 
