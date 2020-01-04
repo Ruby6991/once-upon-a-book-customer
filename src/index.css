@@ -274,7 +274,11 @@ div#slider figure {
     padding: 3vh 0;
   }
 }
-.App .book-details .grid .column-xs-12 .add-to-cart{
+.App .book-details .grid .column-xs-12 .item-buttons{
+  display: flex;
+  flex-direction: row;
+}
+.App .book-details .grid .column-xs-12 .add-to-cart, #favorite{
   line-height: 42px;
   letter-spacing: 3px;
   display: inline-block;
@@ -289,8 +293,9 @@ div#slider figure {
   background-color: var(--mainDark);
   cursor: pointer;
   outline: none;
+  margin:3px 15px 3px 0px;
 }
-.App .book-details .grid .column-xs-12 .add-to-cart:hover{
+.App .book-details .grid .column-xs-12 .add-to-cart:hover, #favorite:hover{
   background-color: var(--mainHotPeach)
 }
 
@@ -743,6 +748,354 @@ div#slider figure {
   letter-spacing: -.025em;
   width: 35%;
 }
+
+/*User Profile Styles*/
+.App .user-profile{
+  display: flex;
+  flex-direction: row;
+}
+.App .user-profile .container {
+  font-family: 'Inria Serif', sans-serif;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 350px;
+  height: 250px;
+  overflow: hidden;
+}
+.App .user-profile .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+.App .user-profile .container:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}
+.App .user-profile img {
+  position: absolute;
+  width: 350px;
+  height: 250px;
+  left: 0;
+}
+.App .user-profile .title {
+  position: absolute;
+  width: 500px;
+  left: -70px;
+  top: 80px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  z-index: 1;
+  transition: top .5s ease;
+  background-color:var(--mainPeach);
+}
+.App .user-profile .container:hover .title {
+  top: 90px;
+}
+.App .user-profile .button {
+  position: absolute;
+  width: 500px;
+  left:-70px;
+  top: 180px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.App .user-profile .button a {
+  width: 200px;
+  padding: 12px 48px;
+  text-align: center;
+  color: white;
+  z-index: 1;
+  background-color: var(--mainDark);
+  font-family: 'Inria Serif', sans-serif;
+}
+.App .user-profile .button a:hover{
+  background-color: var(--mainPeach);
+}
+.App .user-profile .button .fa {
+  padding: 12px 15px;
+}
+.App .user-profile .container:hover .button {
+  opacity: 1;
+}
+@media screen and (max-width: 670px){
+  .App .user-profile{
+    flex-direction: column;
+  }
+}
+
+/*Update Account Styles*/
+.App .profile-details *, .App .profile-details *:before, .App .profile-details *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.App .profile-details{
+  font-family: 'Nunito', sans-serif;
+  background-image:url('https://images.unsplash.com/photo-1498898733745-c8c6df58e4ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.App .profile-details form {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+.App .profile-details h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-size: 36px;
+}
+.App .profile-details input[type="text"],
+.App .profile-details input[type="password"],
+.App .profile-details input[type="date"],
+.App .profile-details input[type="datetime"],
+.App .profile-details input[type="email"],
+.App .profile-details input[type="number"],
+.App .profile-details input[type="search"],
+.App .profile-details input[type="tel"],
+.App .profile-details input[type="time"],
+.App .profile-details input[type="url"],
+.App .profile-details select {
+  background: rgba(255,255,255,.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+  -webkit-transition: .4s;
+          transition: .4s;
+}
+.App .profile-details input[type="text"],
+.App .profile-details input[type="password"],
+.App .profile-details input[type="email"],
+.App .profile-details input[type="date"],
+.App .profile-details input[type="tel"] {
+  border-top: 2px solid #d2d9dd;
+}
+.App .profile-details input[type="text"]:focus,
+.App .profile-details input[type="password"]:focus,
+.App .profile-details input[type="email"]:focus,
+.App .profile-details input[type="date"]:focus,
+.App .profile-details input[type="tel"]:focus,
+.App .profile-details input[type="search"]:focus {
+  background: #d2d9dd;
+  border-radius: 30px;
+  border-top: none;
+}
+.App .profile-details select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+.App .profile-details button {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  margin: 0 auto;
+  background: var(--mainHotPeach);
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border: 1px solid var(--mainHotPeach);
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
+  transition: .4s;
+}
+.App .profile-details button:hover {
+  color: var(--mainDark);
+  width: 70%;
+  border-radius: 30px;
+  background: transparent;
+  border-width: 2px 2px 3px;
+  border-color: var(--mainDark);
+  cursor: pointer;
+}
+.App .profile-details .field-sets{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.App .profile-details fieldset {
+  margin-left: 30px;
+  margin-bottom: 30px;
+  border: none;
+}
+.App .profile-details legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+.App .profile-details label {
+  display: block;
+  margin-bottom: 8px;
+}
+.App .profile-details label.light {
+  font-weight: 300;
+  display: inline;
+}
+.App .profile-details .number {
+  background: var(--mainHotPeach);
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 8px 5px 8px 20px;
+}
+@media screen and (min-width: 480px) {form {max-width: 480px}}
+@media screen and (min-width: 1024px) {
+  .App .profile-details form {max-width: 960px}
+  .App .profile-details fieldset {
+    position: relative;
+    float: left;
+    width: 45%;
+  }
+  .App .profile-details fieldset .addresses {
+    width: 54%;
+    float: right;
+  }
+}
+@media screen and (max-width: 670px){
+  .App .profile-details .field-sets{
+    flex-direction: column;
+  }
+  .App .profile-details input[type="text"],
+  .App .profile-details input[type="password"],
+  .App .profile-details input[type="email"],
+  .App .profile-details input[type="date"],
+  .App .profile-details input[type="tel"]{
+    padding-right:3px;
+  }
+}
+   
+/*Purchase History Styles*/
+.App .purchase-history {
+  font-family: 'Inria Serif', sans-serif;
+  font-weight: 300;
+  line-height: 1.42em;
+  color:#A7A1AE;
+  background-color:white;
+}
+.App .purchase-history h1 {
+  font-size:36px; 
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: var(--mainDark);
+}
+.App .purchase-history h2 {
+  font-size:1em; 
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 2em;
+  color: #FB667A;
+}
+.App .purchase-history h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FB667A;
+  text-decoration: none;
+}
+.App .purchase-history .blue { color: var(--mainDark) }
+.App .purchase-history .yellow { color: #FFF842; }
+.App .purchase-history .container th h1 {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+  color: white;
+}
+.App .purchase-history .container td {
+  font-weight: normal;
+  font-size: 1em;
+-webkit-box-shadow: 0 2px 2px -2px #0E1119;
+  -moz-box-shadow: 0 2px 2px -2px #0E1119;
+        box-shadow: 0 2px 2px -2px #0E1119;
+}
+.App .purchase-history .container {
+  text-align: left;
+  overflow: hidden;
+  width: 80%;
+  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+  margin-bottom: 50px;
+}
+.App .purchase-history .container td, .App .purchase-history .container th {
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left:2%;  
+}
+ /* Background-color of the odd rows */
+.App .purchase-history .container tr:nth-child(odd) {
+  background-color: #323C50;
+}
+ /* Background-color of the even rows */
+.App .purchase-history .container tr:nth-child(even) {
+  background-color: #2C3446;
+}
+.App .purchase-history .container th {
+  background-color: #1F2739;
+}
+.App .purchase-history .container td:first-child { color: var(--mainHotPeach); }
+.App .purchase-history .container td:first-child:hover{
+  cursor: pointer;
+  background-color: var(--mainHotPeach);
+  color: white;
+  box-shadow: var(--mainPeach) -1px 1px, var(--mainPeach)1 -2px 2px, var(--mainPeach) -3px 3px, var(--mainPeach) -4px 4px, var(--mainPeach) -5px 5px, var(--mainPeach) -6px 6px;
+}
+.App .purchase-history .container tr:hover {
+  background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+          box-shadow: 0 6px 6px -6px #0E1119;
+}
+.App .purchase-history .container td:hover {
+  background-color: #FFF842;
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+  transition-timing-function: line;
+}
+ @media (max-width: 800px) {
+  .App .purchase-history .container td:nth-child(4),
+  .App .purchase-history .container th:nth-child(4) { display: none; }
+ }
+
+
+
+
 
 
  

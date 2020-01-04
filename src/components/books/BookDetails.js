@@ -20,7 +20,10 @@ const BookDetails = (props) => {
                         <div className="description">
                             <p>Harry Potttaaaa Did Ya Put YA NAME IN THE GOBLET OF FIREEEEEEEE</p>
                         </div>
-                        <button class="add-to-cart">Add To Cart</button>
+                        <div className="item-buttons">
+                            <button class="add-to-cart">Add To Cart</button>
+                            <button id="favorite">Add To Wishlist</button>
+                        </div>
                     </div>
                 </div>
                 <h1>Product Reviews</h1>

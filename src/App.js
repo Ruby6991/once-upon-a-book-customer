@@ -6,8 +6,10 @@ import Contact from './components/common/ContactUs'
 import Account from './components/profile/Profile'
 import Cart from './components/profile/Cart'
 import Footer from './components/layout/Footer'
-import BookDetails from './components/books/BookDetails';
+import BookDetails from './components/books/BookDetails'
 import SignInAndJoin from './components/auth/SignInAndJoin'
+import ProfileDetails from './components/profile/ProfileDetails'
+import PurchaseHistory from './components/profile/PurchaseHistory';
 
 
 // import M from "materialize-css/dist/js/materialize.min.js";
@@ -37,10 +39,10 @@ class App extends Component {
   render(){
     return (
       <BrowserRouter>
+      {/* <Route exact path='/' component={SignInAndJoin}/> */}
         <div className="App">
           <Navbar/>
           <Switch>
-            <Route exact path='/' component={SignInAndJoin}/>
             <Route exact path='/dashboard' component={Dashboard}/>
             <Route path='/contact' component={Contact}/>
             <Route path='/account' component={Account}/>
@@ -48,6 +50,7 @@ class App extends Component {
             {/* <Route path="/logout" component={Post}/> */}
             <Route path='/book/:id' component={BookDetails}/>
           </Switch>
+          {/* <PurchaseHistory/> */}
           <Footer/>
         </div>
       </BrowserRouter>
