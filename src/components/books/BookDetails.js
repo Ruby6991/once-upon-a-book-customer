@@ -12,6 +12,7 @@ const BookDetails = (props) => {
                     </div>
                     <div class="column-xs-12 column-md-5">
                         <div class="book-title">
+                            <h2>Category Name</h2>
                             <h1>Harry Potter and the Goblet of Fire -{id}</h1>
                             <h2 className="author">By J.K.Rowling</h2>
                             <h2>Rs.1540.00</h2>

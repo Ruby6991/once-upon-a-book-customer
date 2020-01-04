@@ -1,8 +1,14 @@
 import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom'
 import BookList from '../books/BookList'
+import M from "materialize-css/dist/js/materialize.min.js";
 
 class Dashboard extends Component{
+    componentDidMount() {
+        M.Tabs.init(this.Tabs);
+    }
+
+
     render(){
         return(
             <div className="Dashboard">
@@ -16,9 +22,10 @@ class Dashboard extends Component{
                     </figure>
                 </div>
                 <div class="nav-content red lighten-1" id="bookCategories">
-                    <ul class="tabs tabs-transparent center hide-on-med-and-down">
-                        <li class="tab"><NavLink to='/'>Fantasy</NavLink></li>
-                        <li class="tab"><NavLink to='/'>Fiction</NavLink></li>
+                    <ul ref={Tabs => {this.Tabs = Tabs;}}
+                     class="tabs tabs-transparent center hide-on-med-and-down">
+                        <li class="tab"><a href="#test-swipe-1">Fantasy</a></li>
+                        <li class="tab"><a href="#test-swipe-2">Fiction</a></li>
                         <li class="tab"><NavLink to='/'>Romance</NavLink></li>
                         <li class="tab"><NavLink to='/'>Thriller</NavLink></li>
                         <li class="tab"><NavLink to='/'>Mystery</NavLink></li>
@@ -28,14 +35,16 @@ class Dashboard extends Component{
                         <li class="tab"><NavLink to='/'>Humor</NavLink></li>   
                         <li class="tab"><NavLink to='/'>Self-help</NavLink></li>   
                     </ul>
-                    <ul class="tabs tabs-transparent center hide-on-med-and-up show-on-medium-and-down">
-                        <li class="tab"><NavLink to='/'>Fantasy</NavLink></li>
+                    <ul ref={Tabs => {this.Tabs = Tabs;}}
+                     class="tabs tabs-transparent center hide-on-med-and-up show-on-medium-and-down">
+                        <li class="tab"><a href="#test-swipe-1">Fantasy</a></li>
                         <li class="tab"><NavLink to='/'>Fiction</NavLink></li>
                         <li class="tab"><NavLink to='/'>Romance</NavLink></li>
                         <li class="tab"><NavLink to='/'>Thriller</NavLink></li>
                         <li class="tab"><NavLink to='/'>Mystery</NavLink></li>
                     </ul>
-                    <ul class="tabs tabs-transparent center hide-on-med-and-up show-on-medium-and-down">
+                    <ul ref={Tabs => {this.Tabs = Tabs;}} 
+                    class="tabs tabs-transparent center hide-on-med-and-up show-on-medium-and-down">
                         <li class="tab"><NavLink to='/'>Horror</NavLink></li>
                         <li class="tab"><NavLink to='/'>Classic</NavLink></li>
                         <li class="tab"><NavLink to='/'>Comics</NavLink></li>  
@@ -49,7 +58,7 @@ class Dashboard extends Component{
                         <input id="search" type="search" required/>
                     </div> 
                 </form>
-                <BookList/>
+                <BookList/>                
             </div>
         )
     }

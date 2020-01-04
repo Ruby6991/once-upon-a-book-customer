@@ -7,6 +7,7 @@ import Account from './components/profile/Profile'
 import Cart from './components/profile/Cart'
 import Footer from './components/layout/Footer'
 import BookDetails from './components/books/BookDetails';
+import SignInAndJoin from './components/auth/SignInAndJoin'
 
 
 // import M from "materialize-css/dist/js/materialize.min.js";
@@ -31,7 +32,7 @@ class App extends Component {
     //   activeImage.src = e.target.src;
     // }
     // productImages.forEach(image => image.addEventListener("click", changeImage));
-  // }
+// }
 
   render(){
     return (
@@ -39,7 +40,8 @@ class App extends Component {
         <div className="App">
           <Navbar/>
           <Switch>
-            <Route exact path='/' component={Dashboard}/>
+            <Route exact path='/' component={SignInAndJoin}/>
+            <Route exact path='/dashboard' component={Dashboard}/>
             <Route path='/contact' component={Contact}/>
             <Route path='/account' component={Account}/>
             <Route path="/cart" component={Cart}/>

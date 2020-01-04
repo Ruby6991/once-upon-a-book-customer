@@ -4,7 +4,7 @@ import BookSummary from './BookSummary'
 const BookList = () => {
     return(
         <section>
-            <div class="list">
+            <div id="test-swipe-1" class="list">
                 <BookSummary/>
                 <BookSummary/>
                 <BookSummary/>
