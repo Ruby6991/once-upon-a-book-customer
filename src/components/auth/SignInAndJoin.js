@@ -88,8 +88,4 @@ class SignInAndJoin extends Component {
     }
 }
 
-SignInAndJoin.propTypes = {
-
-};
-
 export default SignInAndJoin;

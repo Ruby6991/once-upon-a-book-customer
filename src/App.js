@@ -10,6 +10,7 @@ import BookDetails from './components/books/BookDetails'
 import SignInAndJoin from './components/auth/SignInAndJoin'
 import ProfileDetails from './components/profile/ProfileDetails'
 import PurchaseHistory from './components/profile/PurchaseHistory';
+import OrderAddress from './components/profile/OrderAddress';
 
 
 // import M from "materialize-css/dist/js/materialize.min.js";
@@ -50,7 +51,7 @@ class App extends Component {
             {/* <Route path="/logout" component={Post}/> */}
             <Route path='/book/:id' component={BookDetails}/>
           </Switch>
-          {/* <PurchaseHistory/> */}
+          {/* <OrderAddress/> */}
           <Footer/>
         </div>
       </BrowserRouter>

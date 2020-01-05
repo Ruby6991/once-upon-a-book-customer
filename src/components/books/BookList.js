@@ -1,20 +1,16 @@
 import React from 'react'
 import BookSummary from './BookSummary'
 
-const BookList = () => {
+const BookList = ({books}) => {
     return(
         <section>
             <div id="test-swipe-1" class="list">
-                <BookSummary/>
-                <BookSummary/>
-                <BookSummary/>
-                <BookSummary/>
-            </div>
-            <div class="list">
-                <BookSummary/>
-                <BookSummary/>
-                <BookSummary/>
-                <BookSummary/>
+                {/* books &&-makes sure it only works if there are existing books in the db */}
+                { books && books.map(book => {
+                    return(
+                        <BookSummary book={book} key={book.id}/>
+                    )
+                })}
             </div>
         </section>
     )

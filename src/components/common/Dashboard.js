@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom'
 import BookList from '../books/BookList'
 import M from "materialize-css/dist/js/materialize.min.js";
+import { connect } from 'react-redux'
 
 class Dashboard extends Component{
     componentDidMount() {
@@ -10,6 +11,7 @@ class Dashboard extends Component{
 
 
     render(){
+        const { books } = this.props;
         return(
             <div className="Dashboard">
                 <div id="slider">
@@ -58,10 +60,16 @@ class Dashboard extends Component{
                         <input id="search" type="search" required/>
                     </div> 
                 </form>
-                <BookList/>                
+                <BookList books={books}/>                
             </div>
         )
     }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+    return{
+        books:state.book.books
+    }
+}
+
+export default connect(mapStateToProps)(Dashboard);
