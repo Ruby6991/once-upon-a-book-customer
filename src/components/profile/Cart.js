@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import CartItem from './CartItem';
+import Navbar from '../layout/Navbar';
+import Footer from '../layout/Footer';
 
 class Cart extends Component {
     render() {
         return (
             <div className="cart-wrapper">
+                <Navbar/>
                 <div class="wrap cf">
                     <div class="heading cf">
                         <h1>My Cart</h1>
@@ -27,6 +30,7 @@ class Cart extends Component {
                         </ul>
                     </div>
                 </div>
+                <Footer/>
             </div>
         );
     }

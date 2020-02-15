@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 import BookList from '../books/BookList'
 import M from "materialize-css/dist/js/materialize.min.js";
 import { connect } from 'react-redux'
+import Navbar from '../layout/Navbar';
+import Footer from '../layout/Footer';
 
 class Dashboard extends Component{
     componentDidMount() {
@@ -14,6 +16,7 @@ class Dashboard extends Component{
         const { books } = this.props;
         return(
             <div className="Dashboard">
+                <Navbar/>
                 <div id="slider">
                     <figure>
                     <img src="https://i.pinimg.com/originals/0a/b6/f8/0ab6f8588ad64aa383c0b261b8a9ba71.png" alt/>
@@ -60,7 +63,8 @@ class Dashboard extends Component{
                         <input id="search" type="search" required/>
                     </div> 
                 </form>
-                <BookList books={books}/>                
+                <BookList books={books}/>    
+                <Footer/>            
             </div>
         )
     }

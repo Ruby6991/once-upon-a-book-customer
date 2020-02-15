@@ -9,52 +9,35 @@ import Footer from './components/layout/Footer'
 import BookDetails from './components/books/BookDetails'
 import SignInAndJoin from './components/auth/SignInAndJoin'
 import ProfileDetails from './components/profile/ProfileDetails'
-import PurchaseHistory from './components/profile/PurchaseHistory';
-import OrderAddress from './components/profile/OrderAddress';
-
-
-// import M from "materialize-css/dist/js/materialize.min.js";
+import PurchaseHistory from './components/profile/PurchaseHistory'
+import Wishlist from './components/profile/Wishlist'
+import OrderAddress from './components/profile/OrderAddress'
+import axios from 'axios'
 
 class App extends Component {
-  // componentDidMount() {
-    // var dropdowns = document.querySelectorAll('.dropdown-trigger')
-    // for (var i = 0; i < dropdowns.length; i++){
-    //     M.Dropdown.init(dropdowns[i]);
-    // }
+  componentDidMount(){
 
-    // var elem = document.querySelector(".sidenav");
-    // var instance = M.Sidenav.init(elem, {
-    //     edge: "left",
-    //     inDuration: 250
-    // });
-
-    // const activeImage = document.querySelector(".product-image .active");
-    // const productImages = document.querySelectorAll(".image-list img");
-
-    // function changeImage(e) {
-    //   activeImage.src = e.target.src;
-    // }
-    // productImages.forEach(image => image.addEventListener("click", changeImage));
-// }
+  }
 
   render(){
-    return (
-      <BrowserRouter>
-      {/* <Route exact path='/' component={SignInAndJoin}/> */}
+    return(
+       <BrowserRouter>
         <div className="App">
-          <Navbar/>
           <Switch>
+            <Route exact path='/' component={SignInAndJoin}/>
             <Route exact path='/dashboard' component={Dashboard}/>
             <Route path='/contact' component={Contact}/>
             <Route path='/account' component={Account}/>
             <Route path="/cart" component={Cart}/>
-            {/* <Route path="/logout" component={Post}/> */}
+            <Route path="/logout" component={SignInAndJoin}/>
             <Route path='/book/:id' component={BookDetails}/>
+            <Route path='/orderaddress' component={OrderAddress}/>
+            <Route path='/profiledetails' component={ProfileDetails}/>
+            <Route path='/purchasehistory' component={PurchaseHistory}/>
+            <Route path='/wishlist' component={Wishlist}/>
           </Switch>
-          {/* <OrderAddress/> */}
-          <Footer/>
         </div>
-      </BrowserRouter>
+      </BrowserRouter> 
       
     );
   }

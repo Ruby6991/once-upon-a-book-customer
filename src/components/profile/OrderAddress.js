@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Navbar from '../layout/Navbar';
+import Footer from '../layout/Footer';
 
 class OrderAddress extends Component {
     render() {
         return (
                 <div className="profile-details">
+                    <Navbar/>
                     <form>
                         <h1>Confirm Details</h1>
                         <div className="field-sets">
@@ -28,6 +31,7 @@ class OrderAddress extends Component {
                         </div>
                         <button type="submit">Checkout</button>
                     </form>
+                    <Footer/>
                 </div>
         );
     }

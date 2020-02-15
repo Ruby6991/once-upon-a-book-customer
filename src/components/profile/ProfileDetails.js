@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Navbar from '../layout/Navbar';
+import Footer from '../layout/Footer';
 
 class ProfileDetails extends Component {
     state = {
@@ -31,6 +33,7 @@ class ProfileDetails extends Component {
     render() {
         return (
             <div className="profile-details">
+                <Navbar/>
                  <form onSubmit={this.handleSubmit}>
                     <h1>Update Account</h1>
                     <div className="field-sets">
@@ -61,6 +64,7 @@ class ProfileDetails extends Component {
                     </div>
                     <button type="submit">Update</button>
                 </form>
+                <Footer/>
             </div>
         );
     }

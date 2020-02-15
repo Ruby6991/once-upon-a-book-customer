@@ -1,11 +1,14 @@
 import React from 'react'
 import SingleReview from './SingleReview';
+import Navbar from '../layout/Navbar';
+import Footer from '../layout/Footer';
 
 const BookDetails = (props) => {
     const id= props. match. params. id;
     const format='Paperback';
     return (
             <div class="book-details container">
+                <Navbar/>
                 <div class="grid product">
                     <div class="column-xs-12 column-md-7">
                         <div class="product-image">
@@ -39,6 +42,7 @@ const BookDetails = (props) => {
                     <SingleReview/>
                     <SingleReview/>
                 </div>
+                <Footer/>
             </div>
     )
 }
