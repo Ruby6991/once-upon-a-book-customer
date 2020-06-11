@@ -6,7 +6,8 @@ class SignInAndJoin extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fullName:'',
+            firstName:'',
+            lastName:'',
             email:'',
             phoneNo:'',
             address:'',
@@ -52,7 +53,7 @@ class SignInAndJoin extends Component {
             console.log(data)
             localStorage.setItem("token",data.jwttoken);
             localStorage.setItem("email",that.state.email);
-            localStorage.setItem("name",(data.user.fullname));
+            localStorage.setItem("name",(data.firstName));
             that.setState({
                 redirectToHome:true
             })
@@ -69,11 +70,13 @@ class SignInAndJoin extends Component {
         };
 
         const user = {
-            fullName: this.state.fullName,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
             email:this.state.email,
             phoneNo:this.state.phoneNo,
             address:this.state.address,
-            password:this.state.password
+            password:this.state.password,
+            role:'Customer'
         }
 
         const that = this;
@@ -85,7 +88,7 @@ class SignInAndJoin extends Component {
             .then(function(res){
                 localStorage.setItem("token",res.data.jwttoken);
                 localStorage.setItem("email",that.state.email);
-                localStorage.setItem("name",(res.data.user.fullname));
+                localStorage.setItem("name",(res.data.firstName));
                 that.setState({
                     redirectToHome:true
                 })
@@ -105,7 +108,8 @@ class SignInAndJoin extends Component {
                     <div class="form-container sign-up-container">
                         <form onSubmit={this.handleSubmitSignUp} >
                             <h1>Create Account</h1>
-                            <input type="text" placeholder="Full Name" id="fullName" onChange={this.handleChange}/>
+                            <input type="text" placeholder="First Name" id="firstName" onChange={this.handleChange}/>
+                            <input type="text" placeholder="Last Name" id="lastName" onChange={this.handleChange}/>
                             <input type="text" placeholder="Phone Number" id="phoneNo" onChange={this.handleChange}/>
                             <input type="text" placeholder="Address" id="address" onChange={this.handleChange}/>
                             <input type="email" placeholder="Email" id="email" onChange={this.handleChange}/>
