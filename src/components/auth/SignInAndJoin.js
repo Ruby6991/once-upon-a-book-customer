@@ -10,6 +10,7 @@ class SignInAndJoin extends Component {
             lastName:'',
             email:'',
             phoneNo:'',
+            address:'',
             password:'',
             redirectToHome:false,
             redirectToRegister:false
@@ -50,7 +51,7 @@ class SignInAndJoin extends Component {
         .then(function(res){
             const data = res.data;
             console.log(data)
-            localStorage.setItem("token",data.jwttoken);
+            localStorage.setItem("token",data.jwtToken);
             localStorage.setItem("email",that.state.email);
             localStorage.setItem("name",(data.firstName));
             that.setState({
@@ -73,6 +74,7 @@ class SignInAndJoin extends Component {
             lastName: this.state.lastName,
             email:this.state.email,
             phoneNo:this.state.phoneNo,
+            address:this.state.address,
             password:this.state.password,
             role:'Customer'
         }
@@ -84,7 +86,7 @@ class SignInAndJoin extends Component {
             console.log(login);
             axios.post("http://localhost:8080/authenticate",login)
             .then(function(res){
-                localStorage.setItem("token",res.data.jwttoken);
+                localStorage.setItem("token",res.data.jwtToken);
                 localStorage.setItem("email",that.state.email);
                 localStorage.setItem("name",(res.data.firstName));
                 that.setState({
@@ -109,6 +111,7 @@ class SignInAndJoin extends Component {
                             <input type="text" placeholder="First Name" id="firstName" onChange={this.handleChange}/>
                             <input type="text" placeholder="Last Name" id="lastName" onChange={this.handleChange}/>
                             <input type="text" placeholder="Phone Number" id="phoneNo" onChange={this.handleChange}/>
+                            <input type="text" placeholder="Address" id="address" onChange={this.handleChange}/>
                             <input type="email" placeholder="Email" id="email" onChange={this.handleChange}/>
                             <input type="password" placeholder="Password" id="password" onChange={this.handleChange} />
                             <button>Sign Up</button>

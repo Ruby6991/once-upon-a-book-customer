@@ -3,7 +3,6 @@ import SingleReview from './SingleReview';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import { Component } from 'react';
-import { Redirect } from "react-router-dom"
 import Moment from 'react-moment';
 const axios = require("axios")
 
@@ -13,6 +12,7 @@ class BookDetails extends Component {
         super(props);
         this.state={
             id:this.props.location.state.id,
+            book:'',
             author:'',
             category:'',
             description:'',
@@ -24,21 +24,25 @@ class BookDetails extends Component {
             publisher:'',
             qtyInStock:'',
             ratings:'',
-            title:''
+            title:'',
+            currentOrder:'',
+            wishlist:[]
         }
-        // this.addToCart = this.addToCart.bind(this);
+        this.addToCart = this.addToCart.bind(this);
+        this.addToWishlist = this.addToWishlist.bind(this);
     }
 
     componentDidMount() {
         const that = this;
 
         console.log(localStorage);
-        const data = {
+        const book = {
             id:this.state.id
         }
-        axios.post("http://localhost:8080/GetBook",data).then(function(res){
+        axios.post("http://localhost:8080/GetBook",book).then(function(res){
             console.log(res.data);
             that.setState({
+                book:res.data,
                 imgUrl:res.data.imgUrl,
                 author:res.data.author,
                 category:res.data.category,
@@ -57,6 +61,64 @@ class BookDetails extends Component {
         }).catch(function(error){
             console.log("Book data error ",error.response);
         }) 
+
+        const token = 'Bearer '+ localStorage.token;
+        const headersInfo = {
+            Authorization:token
+        }
+        const data = {
+            email:localStorage.email
+        }
+        console.log(headersInfo);
+        axios.post("http://localhost:8080/GetCurrentOrder",data,{
+            headers:headersInfo
+        }).then(function(res){
+            console.log(res.data);
+            that.setState({
+                currentOrder:res.data
+            })
+        }).catch(function(error){
+            if(error.response.status===404){
+                console.log("No current order")
+            }
+        })
+    }
+
+    addToCart(){
+        if(this.state.qtyInStock===0){
+            alert("Sorry. This book is Out of Stock Right Now.")
+            return;
+        }
+
+        const token = 'Bearer '+ localStorage.token;
+        const headersInfo = {
+            Authorization:token
+        }
+       
+        const orderBook = {
+            book:this.state.book
+        }
+        let newOrder = {
+            id:this.state.currentOrder.id,
+            orderedBooks:[orderBook]
+        }
+
+        console.log(newOrder);
+        axios.put("http://localhost:8080/UpdateOrderAddBook/"+this.state.currentOrder.id,newOrder,{
+        headers:headersInfo
+        })
+        .then(function(res){
+            console.log(res.data);
+            console.log("Book Added to Cart successfully!");
+            alert("Book Added to Cart successfully!");
+        }).catch(function(error){
+            console.log("Book addition un-successful!\nError : ",error);
+            alert("Book Addition un-successful!");
+        })
+    }
+
+    addToWishlist(){
+
     }
 
     render(){
@@ -79,12 +141,13 @@ class BookDetails extends Component {
                                 </div>
                                 <div className="description">
                                     <p className="book-description">{this.state.description}</p><br/>
+                                    <p className="qtyInStock"><b>Quantity:</b>{this.state.qtyInStock}</p>
                                     <p className="isbn"><b>ISBN:</b>{this.state.isbn}</p>
                                     <p className="publisher"><b>Publisher:</b>{this.state.publisher}</p>
                                     <p className="publication-year"><b>Publication Date:</b><Moment format="YYYY/MM/DD">{this.state.publicationDate}</Moment></p><br/>
                                 </div>
                                 <div className="item-buttons">
-                                    <button class="add-to-cart">Add To Cart</button>
+                                    <button class="add-to-cart" onClick={this.addToCart}>Add To Cart</button>
                                     <button id="favorite">Add To Wishlist</button>
                                 </div>
                             </div>

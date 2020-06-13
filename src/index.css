@@ -906,7 +906,7 @@ div#slider figure {
   height: 32px;
   border-radius: 2px;
 }
-.App .profile-details button {
+.App .profile-details #updateAcc {
   position: relative;
   display: block;
   padding: 19px 39px 18px 39px;
@@ -922,7 +922,7 @@ div#slider figure {
   margin-bottom: 10px;
   transition: .4s;
 }
-.App .profile-details button:hover {
+.App .profile-details #updateAcc:hover {
   color: var(--mainDark);
   width: 70%;
   border-radius: 30px;

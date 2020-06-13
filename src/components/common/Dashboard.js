@@ -16,7 +16,8 @@ class Dashboard extends Component{
             category:'',
             books:[],
             view:true,
-            searchResult:''
+            searchResult:'',
+            currentOrder:''
         }
         this.selectCategory = this.selectCategory.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -37,6 +38,45 @@ class Dashboard extends Component{
         }).catch(function(error){
             console.log(error);
         })
+
+        const token = 'Bearer '+ localStorage.token;
+        const headersInfo = {
+            Authorization:token
+        }
+        const data = {
+            email:localStorage.email
+        }
+        console.log(headersInfo);
+        axios.post("http://localhost:8080/GetCurrentOrder",data,{
+            headers:headersInfo
+        }).then(function(res){
+            console.log(res.data);
+            that.setState({
+                currentOrder:res.data
+            }, () => {
+                if(that.state.currentOrder===''){
+                    const userData = {
+                        email:localStorage.email
+                    }
+                    const newOrder = {
+                        user :userData
+                    }
+                    axios.post("http://localhost:8080/CreateOrder",newOrder,{
+                    headers:headersInfo
+                    })
+                        .then(function(res){
+                            console.log("Order created successfully!");
+                        }).catch(function(error){
+                            console.log("Order creation un-successful!\nError : ",error.response);
+                    })   
+                }
+            })
+        }).catch(function(error){
+            // if(error.response.status===404){
+            //     console.log("No current order")
+            // }
+        })
+        
     }
 
     selectCategory = (e) => {      

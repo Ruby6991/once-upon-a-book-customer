@@ -41,7 +41,7 @@ class BookSummary extends Component {
                     <p class="price">US${this.state.price}</p>
                     <p class="descr">{this.state.description}</p>
                     <br/>
-                    <a href="#details" onClick={this.viewDetails}><p>More Info</p></a>
+                    <a href="" onClick={this.viewDetails}><p>More Info</p></a>
                 </div>
             </div>
         )
