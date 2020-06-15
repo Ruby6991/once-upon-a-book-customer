@@ -118,7 +118,26 @@ class BookDetails extends Component {
     }
 
     addToWishlist(){
+        const token = 'Bearer '+ localStorage.token;
+        const headersInfo = {
+            Authorization:token
+        }
+       
+        const book = {
+            id:this.state.id
+        }
 
+        axios.post("http://localhost:8080/CreateWishlistItem/"+localStorage.email,book,{
+        headers:headersInfo
+        })
+        .then(function(res){
+            console.log(res.data);
+            console.log("Book Added to Your Wishlist!");
+            alert("Book Added to Your Wishlist!");
+        }).catch(function(error){
+            console.log("Wishlist addition un-successful!\nError : ",error.response);
+            alert("Wishlist Addition un-successful!");
+        })
     }
 
     render(){
@@ -148,7 +167,7 @@ class BookDetails extends Component {
                                 </div>
                                 <div className="item-buttons">
                                     <button class="add-to-cart" onClick={this.addToCart}>Add To Cart</button>
-                                    <button id="favorite">Add To Wishlist</button>
+                                    <button id="favorite" onClick={this.addToWishlist}>Add To Wishlist</button>
                                 </div>
                             </div>
                         </div>

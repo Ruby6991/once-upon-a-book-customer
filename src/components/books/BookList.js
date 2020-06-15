@@ -11,7 +11,9 @@ const BookList = ({books, category}) => {
                     return(
                         category===book.category?(
                             <BookSummary book={book} key={book.id}/>
-                        ):("")
+                        ):(category==null?(
+                            <BookSummary book={book} key={book.id}/>
+                        ):(""))
                     ) 
                 })}
             </div>

@@ -82,17 +82,6 @@ class CartItem extends Component {
         const headersInfo = {
             Authorization:token
         }
-        const order1 = {
-            id:this.state.currentOrder.id
-        }
-        const book1 = {
-            id:this.state.id
-        }
-        let newOrder = {
-            order:order1,
-            book:book1
-        }
-        console.log(newOrder);
         axios.delete("http://localhost:8080/DeleteOrderBook/"+this.state.currentOrder.id+"/"+this.state.id,{
         headers:headersInfo
         })
