@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import Calendar from 'react-calendar'
+import M from "materialize-css";
 import 'react-calendar/dist/Calendar.css';
 const axios = require("axios");
 
@@ -14,18 +15,17 @@ class ProfileDetails extends Component {
             password:'',
             dateOfBirth:'',
             phoneNo:'',
-            country:'',
             address:'',
-            city:'',
-            postalCode:'',
-            billingCountry:'',
-            billingAddress:'',
-            billingCity:'',
-            billingCode:''
+            currentPsw:'',
+            newPsw:''
         }
+        this.updatePassword = this.updatePassword.bind(this);
     }
 
     componentDidMount(){
+        const modal = document.querySelectorAll('.modal');
+        M.Modal.init(modal, {});
+
         const that = this;
         console.log(localStorage);
         const token = 'Bearer '+ localStorage.token;
@@ -105,6 +105,36 @@ class ProfileDetails extends Component {
          })
     }
 
+    updatePassword = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+
+        if(this.state.currentPsw==='' || this.state.newPsw==='' ){
+            alert("Please fill in the required fields");
+            return;
+        }
+
+        const config = {
+            headers:{
+                Authorization:'Bearer '+ localStorage.token
+            }
+        }
+
+        const formData = new FormData();
+            formData.append('currentPsw', this.state.currentPsw);
+            formData.append('newPsw', this.state.newPsw);
+
+        axios.put("http://localhost:8080/UpdatePassword/"+localStorage.email,formData,config)
+            .then(function(res){
+                console.log("Password updated successfully!");
+                alert("Password updated successfully!");
+                window.location.reload();
+            }).catch(function(error){
+                console.log("Password update un-successful!\nError : ",error.response);
+                alert("Password update un-successful!");
+         })
+    }
+
     render() {
         return (
             <div className="profile-details">
@@ -123,7 +153,26 @@ class ProfileDetails extends Component {
                          </fieldset>
                     </div>
                     <button id="updateAcc" type="submit">Update</button>
+                    {/* <!-- Modal Trigger --> */}
+                    <button id="updateAcc" data-target="modal1"  class="modal-trigger update-btn" >Update Password</button>
                 </form>
+
+                {/* <!-- Modal1 Structure --> */}
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Update Password</h4>
+                        <form id="passWordForm">
+                            <label class="active" for="currentPsw">Current Password</label>
+                            <input type="password" placeholder="Password" id="currentPsw" onChange={this.handleChange} />
+                            <label class="active" for="newPsw">New Password</label>
+                            <input type="password" placeholder="Password" id="newPsw" onChange={this.handleChange} />
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button style={{marginRight:30+'px'}} class="modal-close waves-effect waves-green btn-flat teal lighten-3" onClick={this.updatePassword} >Update</button>
+                        <button class="modal-close waves-effect waves-green btn-flat teal lighten-3">Cancel</button>
+                    </div>
+                </div>
                 <Footer/>
             </div>
         );
