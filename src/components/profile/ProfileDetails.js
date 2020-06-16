@@ -17,9 +17,11 @@ class ProfileDetails extends Component {
             phoneNo:'',
             address:'',
             currentPsw:'',
-            newPsw:''
+            newPsw:'',
+            orders:''
         }
         this.updatePassword = this.updatePassword.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
@@ -59,6 +61,18 @@ class ProfileDetails extends Component {
                     redirectToHome:true
                 })
             }
+        })
+
+        
+        axios.post("http://localhost:8080/GetOrderListByUser",data,{
+            headers:headersInfo
+        }).then(function(res){
+            that.setState({
+                orders:res.data
+            })
+            console.log(res.data);
+        }).catch(function(error){
+            console.log(error);
         })
     }
 
@@ -135,6 +149,42 @@ class ProfileDetails extends Component {
          })
     }
 
+    handleDelete = (e) => {
+        e.preventDefault();
+        let pendingOrders = false; 
+        this.state.orders.map(order => 
+            {
+                if(order.status==="Confirmed"){
+                    pendingOrders=true;
+                }
+            })
+
+        if(pendingOrders){
+            alert("Sorry. You Cannot Delete Your Account While You have Ongoing Orders");
+            return;
+        }
+            
+        const config = {
+            headers:{
+                Authorization:'Bearer '+ localStorage.token
+            }
+        }
+        if (window.confirm("Are you sure you want to delete your account?")) {
+            axios.delete("http://localhost:8080/DeleteUser/"+localStorage.email,config)
+            .then(function(res){
+                console.log("Profile deleted successfully!");
+                alert("Profile deleted successfully!");
+                window.location.reload();
+            }).catch(function(error){
+                console.log("Profile delete un-successful!\nError : ",error.response);
+                alert("Profile delete un-successful!");
+        })
+          } else {
+            alert("Account deletion cancelled");
+          }          
+        
+    }
+
     render() {
         return (
             <div className="profile-details">
@@ -153,6 +203,7 @@ class ProfileDetails extends Component {
                          </fieldset>
                     </div>
                     <button id="updateAcc" type="submit">Update</button>
+                    <button id="updateAcc" onClick={this.handleDelete}>Delete Account</button>
                     {/* <!-- Modal Trigger --> */}
                     <button id="updateAcc" data-target="modal1"  class="modal-trigger update-btn" >Update Password</button>
                 </form>
