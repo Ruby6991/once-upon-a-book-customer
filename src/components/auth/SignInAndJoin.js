@@ -47,18 +47,33 @@ class SignInAndJoin extends Component {
         }
 
         const that = this;
-        axios.post("http://localhost:8080/authenticate",login)
-        .then(function(res){
-            const data = res.data;
-            console.log(data)
-            localStorage.setItem("token",data.jwtToken);
-            localStorage.setItem("email",that.state.email);
-            localStorage.setItem("name",(data.firstName));
-            that.setState({
-                redirectToHome:true
-            })
+        if(login.email!=='' && login.password!==''){
+            axios.post("http://localhost:8080/authenticate",login)
+            .then(function(res){
+                const data = res.data;
+                console.log(data)
+                localStorage.setItem("token",data.jwtToken);
+                localStorage.setItem("email",that.state.email);
+                localStorage.setItem("name",(data.firstName));
+                that.setState({
+                    redirectToHome:true
+                })
 
-        })
+            }).catch(function(error){
+                const res = error.response;
+                if(res.status === 403){
+                    alert("User has been Blacklisted"); 
+                    return;
+                }else if(res.data.trace.includes("INVALID_CREDENTIALS") && res.status===401){
+                    alert("Invalid Email or Password. Please Try Again");
+                    return; 
+                }else{
+                    alert("Server Error!");
+                }
+            })
+        }else{
+            alert("Please Fill in all the fields")
+        } 
     }
 
     handleSubmitSignUp = (e) => {
@@ -80,20 +95,30 @@ class SignInAndJoin extends Component {
         }
 
         const that = this;
-        axios.post("http://localhost:8080/Register",user)
-        .then(function(res){
-            alert("Registered Successfully!");
-            console.log(login);
-            axios.post("http://localhost:8080/authenticate",login)
+        if(user.firstName!=='' && user.lastName!=='' && user.email!=='' && user.phoneNo!=='' && user.address!=='' && user.password!==''){
+            axios.post("http://localhost:8080/Register",user)
             .then(function(res){
-                localStorage.setItem("token",res.data.jwtToken);
-                localStorage.setItem("email",that.state.email);
-                localStorage.setItem("name",(res.data.firstName));
-                that.setState({
-                    redirectToHome:true
-                })
-            });
+                alert("Registered Successfully!");
+                console.log(login);
+                axios.post("http://localhost:8080/authenticate",login)
+                .then(function(res){
+                    localStorage.setItem("token",res.data.jwtToken);
+                    localStorage.setItem("email",that.state.email);
+                    localStorage.setItem("name",(res.data.firstName));
+                    that.setState({
+                        redirectToHome:true
+                    })
+                });
+            }).catch(function(error){
+                console.log(error.response);
+                if(error.response.status===500){
+                    alert("User Already Exists in the System!");
+                }
         })
+        }else{
+            alert("Please Fill in all the fields")
+        } 
+        
     }
 
     render() {
